@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CINEMA PARADISO</title>
+
+  <link rel="icon" href="./favicon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./main.css" />
+  <script defer type="module" src="./main.js"></script>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="top">
+      <!-- <a href="/" class="top-logo">
+        <img src="./images/movie-clapper-open.png" alt="logo" />
+        <span>HOME</span>
+      </a> -->
+      <a href="/" class="title">CINEMA PARADISO</a>
+    </div>
+  </header>
+
+<!-- SEARCHBAR -->
+  <section class="searchbar">
+      <form class="search-form">
+          <div class="input-text">
+            <input class="search-input" type="text" placeholder="What are you looking for?" />
+          </div>
+          <!-- 년도검색은 다음 기회에...! -->
+          <!-- <div class="input-year">
+            <span>Released</span>
+            <input type="radio" id="allyears" class="years" name="years" value="All" checked />
+            <label for="allyears" class="year-label">All</label>
+            <input type="radio" id="years1" class="years" name="years" value="1900s" />
+            <label for="years1" class="year-label">1900s</label>
+            <input type="radio" id="years2" class="years" name="years" value="2000s" />
+            <label for="years2" class="year-label">2000s</label>
+            <input type="radio" id="years3" class="years" name="years" value="2010s" />
+            <label for="years3" class="year-label">2010s</label>
+            <input type="radio" id="years4" class="years" name="years" value="2020s" />
+            <label for="years4" class="year-label">2020s</label>
+          </div> -->
+          <div class="input-pieces">
+            <span>Pieces</span>
+            <input type="radio" id="ten" class="pieces" name="pieces" value="10" checked />
+            <label for="ten">10</label>
+            <input type="radio" id="twenty" class="pieces" name="pieces" value="20" />
+            <label for="twenty">20</label>
+            <input type="radio" id="thirty" class="pieces" name="pieces" value="30" />
+            <label for="thirty">30</label>
+          </div>
+          <div class="input-button">
+            <button class="btn-search" type="submit">SEARCH</button>
+          </div> 
+      </form>
+  </section>
+
+  
+  <!-- MOVIE RENDERING -->
+  <section class="result">
+    <span class="total"> </span>
+
+    <!-- LOADING ICON -->
+    <div h-loader class="loading">
+      <svg viewBox="22.857142857142858 22.857142857142858 45.714285714285715 45.714285714285715">
+        <circle cx="45.714285714285715" cy="45.714285714285715" r="20" stroke-width="5.714285714285714"
+          stroke-dasharray="125.664" stroke-dashoffset="125.66370614359172px"></circle>
+      </svg>
+    </div>
+
+    <div class="movies"> </div>
+    
+    <div class="modal">
+      <div class="modal-window">
+        <div class="modal-close"> close </div>
+      </div>
+    </div>
+  
+    <!-- MORE BUTTON -->
+    <div class="actions">
+      <div class="more-btn">show me more!</div>
+    </div>
+  </section>
+
+</body>
+
+</html>
