@@ -3,12 +3,14 @@ import {modalControl} from './modal.js'
 
 // 초기화 코드
 const moviesEl = document.querySelector('.movies');
-const moreBtnEl = document.querySelector('.more-btn');
 const searchFormEl = document.querySelector('.search-form');
 const searchInputEl = document.querySelector('.search-input');
+const moreBtnEl = document.querySelector('.more-btn');
 const totalEl = document.querySelector('.total');
 const loadEl = document.querySelector('.loading');
 const movieEl = document.querySelector('.movie');
+const modalEl = document.querySelector('.modal');
+const message = document.createElement('span')
 
 let page = 1;
 let maxPage = -1;
@@ -20,21 +22,44 @@ let year = "";
   const movies = await getMovies();
   page += 1;
   renderMovies(movies);
-  console.log(movies)
-  // const detail = await getMovieDetail(movies.imdbID);
-  // renderMovieDetail(movies.imdbID);
 })
 
-// 검색창에 영화 제목 input
+// 검색창에 영화 제목 input 이벤트
 searchFormEl.addEventListener('submit', async (event) => {
   event.preventDefault();
   deleteResult();
   loading()
   title = searchInputEl.value;
-  const {movies, totalResults} = await getMovies(title, year, page);
-  renderMovies(movies, totalResults);
-  pieces(movies);
+
+  if (title !== "" && title.length > 2) {
+    const {movies, totalResults} = await getMovies(title, year, page);
+    renderMovies(movies, totalResults);
+    pieces(movies);
+  } else {
+    errorMessage();
+  }
 });
+
+
+//에러메시지 출력
+function errorMessage() {
+  message.classList.add('error');
+  loaded()
+
+  //한글 입력 검사
+  let koCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+  
+  if (title === "" || title.length < 3) {
+    message.textContent = `Please enter at least 3 characters.`;
+  } else if ( koCheck.test(title) == true ) {
+    message.textContent = `Please enter the search word in English.`;
+  } else {
+    message.textContent = `Movie not found!`;
+  }
+  moviesEl.append(message);
+  MoreBtnVisibility();
+}
+
 
 // 기존 출력 내용 지우기
 function deleteResult () {
@@ -59,16 +84,18 @@ function pieces(movies) {
     moreMovies();
     moreMovies();
   }
+  console.log(movies)
 }
 
 // 더보기 버튼 클릭이벤트
-moreBtnEl.addEventListener('click', async () => {
-  moreMovies()
-});
+const moreBtnClick = 
+  moreBtnEl.addEventListener('click', async () => {
+    moreMovies()
+  });
 
 // 더보기 버튼 나타내기/숨기기
 function MoreBtnVisibility(totalResults, page) {
-  maxPage = Math.ceil(Number(totalResults / 10));
+  maxPage = Math.ceil(+(totalResults / 10)); //+로 string에서 Number 형변환
   if (page < maxPage && totalResults > 10) {
     moreBtnEl.style.visibility = 'visible';
   } else {
@@ -99,17 +126,9 @@ async function getMovies(title, year = '', page = 1) {
       totalResults,
       page
     }
-  } else {  //에러메세지 출력
-    const message = document.createElement('span');
-    message.classList.add('error');
-    if (title.length < 3) {
-      message.textContent = `Please enter at least 3 characters.`;
-    } else {
-      message.textContent = `${json.Error}`
-    }
-    loaded()
-    moviesEl.append(message);
-    MoreBtnVisibility();
+  } 
+  else {  //에러메세지 출력
+    errorMessage();
   }
 }
 
@@ -136,7 +155,14 @@ function renderMovies(movies, totalResults) {
     }
     imgEl.src = movie.Poster;
     el.append(imgEl, titleEl);
-    moviesEl.append(el);      
+    moviesEl.append(el); 
+    
+    // const id = movie.imdbID;
+
+    // el.addEventListener("click", async() => {
+    //   const detail = await getMovieDetail(id);
+    //   renderMovieDetail(detail);
+    // })
   }
   MoreBtnVisibility(totalResults, page);
   modalControl();

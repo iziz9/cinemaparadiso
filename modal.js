@@ -7,6 +7,7 @@ export async function modalControl() {
   function modalClose() {
     modalEl.style.display = "none";
   }
+  
   //모달 열기
   const openDetail = document.querySelector('.movies');
   openDetail.addEventListener("click", event => {
