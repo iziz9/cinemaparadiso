@@ -93,6 +93,7 @@ const moreBtnClick =
     moreMovies()
   });
 
+
 // 더보기 버튼 나타내기/숨기기
 function MoreBtnVisibility(totalResults, page) {
   maxPage = Math.ceil(+(totalResults / 10)); //+로 string에서 Number 형변환
@@ -150,10 +151,12 @@ function renderMovies(movies, totalResults) {
     const titleEl = document.createElement('h1');
     titleEl.textContent = movie.Title;
     const imgEl = document.createElement('img');
-    if (movie.Poster == 'N/A') {
-      movie.Poster = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png?20200912122019'
-    }
     imgEl.src = movie.Poster;
+    imgEl.alt = "Movie poster";
+    imgEl.onerror = function() {
+      this.src = "./images/No-image.png";
+      this.alt = "Alternative image";
+    }
     el.append(imgEl, titleEl);
     moviesEl.append(el); 
     
@@ -168,6 +171,7 @@ function renderMovies(movies, totalResults) {
   modalControl();
   loaded();
 }
+
 
 async function getMovieDetail(id) {
   const res = await fetch(`https://omdbapi.com/?apikey=7035c60c&i=${id}&plot=full`)
