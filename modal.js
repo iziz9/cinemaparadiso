@@ -11,7 +11,8 @@ export async function modalControl() {
   //모달 열기
   const openDetail = document.querySelector('.movies');
   openDetail.addEventListener("click", event => {
-    modalOpen()
+    if (openDetail.classList !== "error")
+    modalOpen();
   })
   // close버튼 클릭으로 모달 닫기
   const closeBtn = document.querySelector(".modal-close")

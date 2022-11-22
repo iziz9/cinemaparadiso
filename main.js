@@ -57,7 +57,7 @@ function errorMessage() {
     message.textContent = `Movie not found!`;
   }
   moviesEl.append(message);
-  MoreBtnVisibility();
+  setMoreBtnVisibility();
 }
 
 
@@ -78,9 +78,9 @@ async function moreMovies() {
 // 출력갯수 옵션 선택
 function pieces(movies) {
   const selectPieces = document.querySelector('.pieces:checked').value;
-  if (selectPieces == "20") {
+  if (selectPieces === "20") {
     moreMovies();
-  } else if (selectPieces == "30") {
+  } else if (selectPieces === "30") {
     moreMovies();
     moreMovies();
   }
@@ -89,13 +89,13 @@ function pieces(movies) {
 
 // 더보기 버튼 클릭이벤트
 const moreBtnClick = 
-  moreBtnEl.addEventListener('click', async () => {
+  moreBtnEl.addEventListener('click', () => {
     moreMovies()
   });
 
 
 // 더보기 버튼 나타내기/숨기기
-function MoreBtnVisibility(totalResults, page) {
+function setMoreBtnVisibility(totalResults, page) {
   maxPage = Math.ceil(+(totalResults / 10)); //+로 string에서 Number 형변환
   if (page < maxPage && totalResults > 10) {
     moreBtnEl.style.visibility = 'visible';
@@ -137,7 +137,7 @@ async function getMovies(title, year = '', page = 1) {
 // 결과 갯수 출력
 function displayTotalResult(totalResults) {
   totalEl.textContent = `Total Results ${totalResults}`;
-  if (totalEl.textcontent == '' && page==1) {
+  if (totalEl.textcontent === '' && page===1) {
     moviesEl.append(totalEl);
   } 
 }
@@ -167,7 +167,7 @@ function renderMovies(movies, totalResults) {
     //   renderMovieDetail(detail);
     // })
   }
-  MoreBtnVisibility(totalResults, page);
+  setMoreBtnVisibility(totalResults, page);
   modalControl();
   loaded();
 }
@@ -191,7 +191,7 @@ function renderMovieDetail(detail) {
     const imageContainer = modalEl.createElement('div'); 
     imageContainer.classList.add('modal-img');
     const imgEl = imageContainer.createElement('img');
-    if (detail.Poster == 'N/A') {
+    if (detail.Poster === 'N/A') {
       detail.Poster = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png?20200912122019'
     } else {
       imgEl.src = detail.Poster;
