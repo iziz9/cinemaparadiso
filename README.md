@@ -3,8 +3,9 @@
 
 ## 🍫 2차제출 전 확인 / Functional requirement
 
-- [] total result가 1 이상이라면, 출력갯수 옵션을 30개로 체크하더라도 movie not found 에러메시지를 띄우지 않아야 한다.
-- [] 
+- [ ] total result가 1 이상이라면, 출력갯수 옵션을 30개로 체크하더라도 movie not found 에러메시지를 띄우지 않아야 한다.
+- [ ] 
+
 ---
 
 ## 🍫 수정한 부분 & 리뷰요청
