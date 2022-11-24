@@ -278,41 +278,41 @@ circle {
   color: white;
   font-size: 30px;
 }
-.modal .modal-content {
+.modal .modal-inner {
   text-align: center;
   padding: 0px 10px;
   color: rgb(158, 154, 154);
 }
-.modal-content .released {
+.modal-inner .released {
   color: orange;
   font-size: 20px;
   padding: 20px;
 }
-.modal-content .director,
-.modal-content .actors {
+.modal-inner .director,
+.modal-inner .actors {
   color: #e3e3e3;
   font-size: 18px;
   line-height: 30px;
 }
-.modal-content .plot {
+.modal-inner .plot {
   margin-top: 25px;
   padding: 0 20px;
   word-wrap: break-word;
 }
-.modal-content .ratings {
+.modal-inner .ratings {
   margin-top: 25px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.modal-content .ratings .rating-img {
+.modal-inner .ratings .rating-img {
   width: 200px;
   height: 100px;
   /* background-image: url(./images/meta.png);
   background-repeat: no-repeat;
   background-size:contain; */
 }
-.modal-content .ratings .rating-text {
+.modal-inner .ratings .rating-text {
   margin-top: 20px;
   color: #e3e3e3;
   font-size: 20px;
