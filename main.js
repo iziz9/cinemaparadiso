@@ -1,4 +1,5 @@
 import {modalControl} from './modal.js'
+import API_KEY from './apikey.js';
 
 
 // 초기화 코드
@@ -117,7 +118,7 @@ function loaded() {
 async function getMovies(title, year = '', page = 1) {
 
   const y = `&y=${year}`;
-  const res = await fetch(`https://omdbapi.com/?apikey=7035c60c&s=${title}${y}&page=${page}`);
+  const res = await fetch(`https://omdbapi.com/?apikey=${API_KEY}&s=${title}${y}&page=${page}`);
   const json = await res.json();
   console.log(json)
   if (json.Response === 'True') {
@@ -173,7 +174,7 @@ function renderMovies(movies, totalResults) {
 
 
 async function getMovieDetail(id) {
-  const res = await fetch(`https://omdbapi.com/?apikey=7035c60c&i=${id}&plot=full`)
+  const res = await fetch(`https://omdbapi.com/?apikey=${API_KEY}&i=${id}&plot=full`)
   const movieDetail = await res.json()
   if (movieDetail.Response === 'True') {
     return movieDetail
@@ -185,6 +186,8 @@ async function getMovieDetail(id) {
 
 // 상세정보 출력하기
 function renderMovieDetail(detail) {
+
+
     const modalEl = document.querySelector('.modal-window'); 
     // 영화이미지 출력
     const imageContainer = modalEl.createElement('div'); 
