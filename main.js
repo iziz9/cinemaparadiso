@@ -152,7 +152,7 @@ function renderMovies(movies, totalResults) {
     titleEl.textContent = movie.Title;
     const imgEl = document.createElement('img');
     imgEl.src = movie.Poster;
-    imgEl.alt = "Movie poster";
+    imgEl.alt = movie.Title;
     imgEl.onerror = function() {
       this.src = "./images/No-image.png";
       this.alt = "Alternative image";
@@ -161,7 +161,6 @@ function renderMovies(movies, totalResults) {
     moviesEl.append(el); 
     
     // const id = movie.imdbID;
-
     // el.addEventListener("click", async() => {
     //   const detail = await getMovieDetail(id);
     //   renderMovieDetail(detail);
