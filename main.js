@@ -33,6 +33,7 @@ searchFormEl.addEventListener('submit', async (event) => {
 
   if (title !== "" && title.length > 2) {
     const {movies, totalResults} = await getMovies(title, year, page);
+
     renderMovies(movies, totalResults);
     pieces(movies);
   } else {
@@ -72,20 +73,19 @@ function deleteResult () {
 async function moreMovies() {
   page += 1;
   const {movies, totalResults} = await getMovies(title, year, page);
+  console.log({movies, totalResults});
   renderMovies(movies, totalResults);
 }
 
 // 출력갯수 옵션 선택
 function pieces(movies) {
   const selectPieces = document.querySelector('.pieces:checked').value;
-  if (selectPieces === "20") {
-    moreMovies();
-  } else if (selectPieces === "30") {
-    moreMovies();
+  for (let i = 1; i < selectPieces; i+=1) {
     moreMovies();
   }
   console.log(movies)
 }
+
 
 // 더보기 버튼 클릭이벤트
 const moreBtnClick = 
@@ -115,11 +115,11 @@ function loaded() {
 
 // 영화 정보 가져오기
 async function getMovies(title, year = '', page = 1) {
-  const s = `&s=${title}`;
+
   const y = `&y=${year}`;
-  const p = `&page=${page}`;
-  const res = await fetch(`https://omdbapi.com/?apikey=7035c60c${s}${y}${p}`);
+  const res = await fetch(`https://omdbapi.com/?apikey=7035c60c&s=${title}${y}&page=${page}`);
   const json = await res.json();
+  console.log(json)
   if (json.Response === 'True') {
     const { Search: movies, totalResults } = json
     return {
