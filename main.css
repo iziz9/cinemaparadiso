@@ -238,6 +238,9 @@ circle {
   z-index: 2;
 }
 .modal .modal-window {
+  height: 100%;
+  position: fixed;
+  overflow-y: scroll;
   background-color: #181f27f1;
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 13.5px );
@@ -250,6 +253,21 @@ circle {
   padding: 10px;
   z-index: 3;
 }
+.modal-window::-webkit-scrollbar {
+  width: 10px;
+}
+.modal-window::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 10px;
+}
+.modal-window::-webkit-scrollbar-track {
+  background-color: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  border-radius: 10px;
+  /* box-shadow: inset 0px 0px 5px white; */
+}
+/* .modal .modal-inner {
+  height: 100%;
+} */
 .modal .modal-close {
   text-align: end;
   padding-right: 10px;
@@ -257,10 +275,9 @@ circle {
   text-shadow: 1px 1px 2px gray;
   color: white;
 }
-
 .modal .modal-img { 
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px;
   padding: 0px 10px;
 }
 .modal .modal-img img {
@@ -268,7 +285,6 @@ circle {
   height: calc(var(--size) * 3 / 2);
   width: var(--size);
 }
-
 .modal h2 {
   margin-top: 20px;
   display: block;
@@ -316,4 +332,21 @@ circle {
   margin-top: 20px;
   color: #e3e3e3;
   font-size: 20px;
+}
+
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+footer .github {
+  color: orange;
+  font-size: 15px;
+}
+footer .github img {
+  width: 40px;
+  height: 40px;
+  margin: 0 30px;
+  filter: invert(60%);
 }
