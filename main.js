@@ -1,4 +1,5 @@
-import {modalControl} from './modal.js'
+import { modalControl } from './modal.js'
+import { getMovieDetail, renderMovieDetail } from './detail.js';
 import API_KEY from './apikey.js';
 
 
@@ -9,16 +10,15 @@ const searchInputEl = document.querySelector('.search-input');
 const moreBtnEl = document.querySelector('.more-btn');
 const totalEl = document.querySelector('.total');
 const loadEl = document.querySelector('.loading');
-const modalEl = document.querySelector('.modal-inner');
 const message = document.createElement('span')
 
 let page = 1;
 let maxPage = -1;
 let title = "";
-let year = ""; 
+let year = "";
 
 // 최초 호출
-;(async () => {
+; (async () => {
   const movies = await getMovies();
   page += 1;
   renderMovies(movies);
@@ -32,10 +32,10 @@ searchFormEl.addEventListener('submit', async (event) => {
   title = searchInputEl.value;
 
   if (title !== "" && title.length > 2) {
-    const {movies, totalResults } = await getMovies(title, year, page);
+    const { movies, totalResults } = await getMovies(title, year, page);
 
     renderMovies(movies, totalResults);
-    pieces(movies);
+    pieces();
   } else {
     errorMessage();
   }
@@ -49,10 +49,10 @@ function errorMessage() {
 
   //한글 입력 검사
   let koCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-  
+
   if (title === "" || title.length < 3) {
     message.textContent = `Please enter at least 3 characters.`;
-  } else if ( koCheck.test(title) == true ) {
+  } else if (koCheck.test(title) == true) {
     message.textContent = `Please enter the search word in English.`;
   } else {
     message.textContent = `Movie not found!`;
@@ -63,7 +63,7 @@ function errorMessage() {
 
 
 // 기존 출력 내용 지우기
-function deleteResult () {
+function deleteResult() {
   moviesEl.textContent = "";
   totalEl.textContent = "";
   page = 1;
@@ -72,21 +72,25 @@ function deleteResult () {
 // 화면에 더 출력하기
 async function moreMovies() {
   page += 1;
-  const {movies, totalResults} = await getMovies(title, year, page);
+  const { movies, totalResults } = await getMovies(title, year, page);
   renderMovies(movies, totalResults);
+  console.log(moviesEl.children)
+  if (totalResults > 1) {
+    moviesEl.removeChild(span)
+  }
 }
 
 // 출력갯수 옵션 선택
-function pieces(movies) {
+function pieces() {
   const selectPieces = document.querySelector('.pieces:checked').value;
-  for (let i = 1; i < selectPieces; i+=1) {
+  for (let i = 1; i < selectPieces; i += 1) {
     moreMovies();
   }
 }
 
 
 // 더보기 버튼 클릭이벤트
-const moreBtnClick = 
+const moreBtnClick =
   moreBtnEl.addEventListener('click', () => {
     moreMovies()
   });
@@ -124,7 +128,7 @@ async function getMovies(title, year = '', page = 1) {
       totalResults
       // page
     }
-  } 
+  }
   else {  //에러메세지 출력
     errorMessage();
   }
@@ -134,11 +138,11 @@ async function getMovies(title, year = '', page = 1) {
 // 결과 갯수 출력
 function displayTotalResult(totalResults) {
   totalEl.textContent = `Total Results ${totalResults}`;
-  if (totalEl.textcontent === '' && page===1) {
+  if (totalEl.textcontent === '' && page === 1) {
     moviesEl.append(totalEl);
-  } 
+  }
 }
-  
+
 // 영화 목록 출력
 function renderMovies(movies, totalResults) {
   displayTotalResult(totalResults);
@@ -150,13 +154,13 @@ function renderMovies(movies, totalResults) {
     const imgEl = document.createElement('img');
     imgEl.src = movie.Poster;
     imgEl.alt = movie.Title;
-    imgEl.onerror = function() {
+    imgEl.onerror = function () {
       this.src = "./images/No-image.png";
       this.alt = "Alternative image";
     }
     el.append(imgEl, titleEl);
-    moviesEl.append(el); 
-    
+    moviesEl.append(el);
+
     const id = movie.imdbID;
     el.addEventListener("click", async () => {
       modalControl();
@@ -170,94 +174,3 @@ function renderMovies(movies, totalResults) {
 
 
 
-
-async function getMovieDetail(id) {
-  const res = await fetch(`https://omdbapi.com/?apikey=${API_KEY}&i=${id}&plot=full`)
-  const movieDetail = await res.json()
-  if (movieDetail.Response === 'True') {
-    return movieDetail
-  }
-  return movieDetail.Error
-}
-
-
-
-// 상세정보 출력하기
-function renderMovieDetail(movieDetail) {
-  modalEl.textContent='';
-
-    // 영화이미지 출력
-    const imageContainer = document.createElement('div'); 
-    imageContainer.classList.add('modal-img');
-    const imgEl = document.createElement('img');
-    imageContainer.append(imgEl);
-    imgEl.src = movieDetail.Poster;
-    imgEl.alt = movieDetail.Title;
-    imgEl.onerror = function() {
-      this.src = "./images/No-image.png";
-      this.alt = "Alternative image";
-    }
-    // 타이틀 출력
-    const modalTitleEl = document.createElement('h2'); 
-    modalTitleEl.textContent = movieDetail.Title
-    // 컨텐트 컨테이너
-    const modalContentEl = document.createElement('div'); 
-    modalContentEl.classList.add('modal-content');
-    // 컨텐트 - 개봉정보
-    const releasedEl = document.createElement('div');
-    releasedEl.classList.add('released');
-    releasedEl.textContent = `Released: ${movieDetail.Released} · Runtime: ${movieDetail.Runtime} · Country: ${movieDetail.Country}`;
-    // 컨텐트 - 감독
-    const directorEl = document.createElement('div');
-    directorEl.classList.add('director');
-    directorEl.textContent = `Director: ${movieDetail.Director}`;
-    // 컨텐트 - 배우
-    const actorsEl = document.createElement('div');
-    actorsEl.classList.add('actors');
-    actorsEl.textContent = `Actors: ${movieDetail.Actors}`;
-    // 컨텐트 - 플롯
-    const plotEl = document.createElement('div');
-    plotEl.classList.add('plot');
-    plotEl.textContent = `${movieDetail.Plot}`;
-    // 컨텐트 - 평점
-    // const ratingsEl = document.createElement('div');
-    // const imdbEl = document.createElement('div');
-    // const imdbImgEl = document.createElement('div');
-    // imdbImgEl.classList.add('rating-img');
-    // const imdbRatingEl = document.createElement('div');
-    // imdbRatingEl.classList.add('rating-text');
-
-    // const rottenEl = document.createElement('div');
-    // const rottenImgEl = document.createElement('div');
-    // rottenImgEl.classList.add('rating-img');
-    // const rottenRatingEl = document.createElement('div');
-    // rottenRatingEl.classList.add('rating-text');
-
-    // const metaEl = document.createElement('div');
-    // const metaImgEl = document.createElement('div');
-    // metaImgEl.classList.add('rating-img');
-    // const metaRatingEl = document.createElement('div');
-    // metaRatingEl.classList.add('rating-text');
-
-    // html에 넣어주기
-    modalEl.append(
-      imageContainer, 
-      imgEl,
-      modalTitleEl, 
-      modalContentEl, 
-      releasedEl, 
-      directorEl, 
-      actorsEl, 
-      plotEl, 
-      ratingsEl,
-      imdbEl,
-      imdbImgEl,
-      imdbRatingEl,
-      rottenEl,
-      rottenImgEl,
-      rottenRatingEl,
-      metaEl,
-      metaImgEl,
-      metaRatingEl
-      );
-}
