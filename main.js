@@ -1,7 +1,6 @@
 import { modalControl } from './modal.js'
 import { getMovieDetail, renderMovieDetail } from './detail.js';
 import API_KEY from './apikey.js';
-import { getMovieDetail, renderMovieDetail } from './detail.js';
 
 // 초기화 코드
 const moviesEl = document.querySelector('.movies');
@@ -18,7 +17,7 @@ let title = "";
 let year = "";
 
 // 최초 호출
-; (async () => {
+;(async () => {
   const movies = await getMovies();
   page += 1;
   renderMovies(movies);
@@ -74,10 +73,6 @@ async function moreMovies() {
   page += 1;
   const { movies, totalResults } = await getMovies(title, year, page);
   renderMovies(movies, totalResults);
-  console.log(moviesEl.children)
-  if (totalResults > 1) {
-    moviesEl.removeChild(span)
-  }
 }
 
 // 출력갯수 옵션 선택
@@ -126,7 +121,6 @@ async function getMovies(title, year = '', page = 1) {
     return {
       movies,
       totalResults
-      // page
     }
   }
   else {  //에러메세지 출력
@@ -170,6 +164,7 @@ function renderMovies(movies, totalResults) {
   }
   setMoreBtnVisibility(totalResults, page);
   loaded();
+  message='';
 }
 
 
