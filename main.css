@@ -169,13 +169,17 @@ header .top .title {
 .more-btn {
   font-size: 25px;
   font-weight: 500;
-  color: #e3e3e3;
+  color: tan;
   padding: 15px 25px;
-  background-color: darkgoldenrod;
+  background-color: #181F27;
   display: inline-block;
   border-radius: 30px;
+  border: 5px tan double;
   cursor: pointer;
   visibility: hidden;
+}
+.more-btn:hover {
+  background-color: #181f27c7;
 }
 
 
@@ -263,11 +267,7 @@ circle {
 .modal-window::-webkit-scrollbar-track {
   background-color: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   border-radius: 10px;
-  /* box-shadow: inset 0px 0px 5px white; */
 }
-/* .modal .modal-inner {
-  height: 100%;
-} */
 .modal .modal-close {
   text-align: end;
   padding-right: 10px;
@@ -315,7 +315,7 @@ circle {
   padding: 0 20px;
   word-wrap: break-word;
 }
-.modal-inner .ratings {
+/* .modal-inner .ratings {
   margin-top: 25px;
   display: flex;
   flex-wrap: wrap;
@@ -324,15 +324,12 @@ circle {
 .modal-inner .ratings .rating-img {
   width: 200px;
   height: 100px;
-  /* background-image: url(./images/meta.png);
-  background-repeat: no-repeat;
-  background-size:contain; */
 }
 .modal-inner .ratings .rating-text {
   margin-top: 20px;
   color: #e3e3e3;
   font-size: 20px;
-}
+} */
 
 /* FOOTER */
 footer {

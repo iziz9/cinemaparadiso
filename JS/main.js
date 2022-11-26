@@ -1,18 +1,18 @@
 import { modalControl } from './modal.js'
 import { getMovieDetail, renderMovieDetail } from './detail.js';
 import API_KEY from '../apikey.js';
+import { setMoreBtnVisibility, moreBtnEl } from './morebtn.js';
+import { loadEl, loading, loaded } from './loading.js';
 
 // 초기화 코드
 const moviesEl = document.querySelector('.movies');
 const searchFormEl = document.querySelector('.search-form');
 const searchInputEl = document.querySelector('.search-input');
-const moreBtnEl = document.querySelector('.more-btn');
 const totalEl = document.querySelector('.total');
-const loadEl = document.querySelector('.loading');
-let message = document.createElement('span')
+const message = document.querySelector('span')
+// const loadEl = document.querySelector('.loading');
 
 let page = 1;
-let maxPage = -1;
 let title = "";
 let year = "";
 
@@ -58,8 +58,8 @@ function errorMessage() {
     } else {
       message.textContent = `Movie not found!`;
     }
+    moviesEl.append(message);
   }
-  moviesEl.append(message);
   setMoreBtnVisibility();
 }
 
@@ -86,7 +86,6 @@ function pieces() {
   }
 }
 
-
 // 더보기 버튼 클릭이벤트
 const moreBtnClick =
   moreBtnEl.addEventListener('click', () => {
@@ -94,23 +93,13 @@ const moreBtnClick =
   });
 
 
-// 더보기 버튼 나타내기/숨기기
-function setMoreBtnVisibility(totalResults, page) {
-  maxPage = Math.ceil(+(totalResults / 10)); //+로 string에서 Number 형변환
-  if (page < maxPage && totalResults > 10) {
-    moreBtnEl.style.visibility = 'visible';
-  } else {
-    moreBtnEl.style.visibility = 'hidden';
-  }
-}
-
-// 로딩애니메이션
-function loading() {
-  loadEl.style.visibility = "visible";
-}
-function loaded() {
-  loadEl.style.visibility = "hidden";
-}
+// // 로딩애니메이션
+// function loading() {
+//   loadEl.style.visibility = "visible";
+// }
+// function loaded() {
+//   loadEl.style.visibility = "hidden";
+// }
 
 
 // 영화 정보 가져오기
