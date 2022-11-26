@@ -9,7 +9,7 @@ const searchInputEl = document.querySelector('.search-input');
 const moreBtnEl = document.querySelector('.more-btn');
 const totalEl = document.querySelector('.total');
 const loadEl = document.querySelector('.loading');
-const message = document.createElement('span')
+let message = document.createElement('span')
 
 let page = 1;
 let maxPage = -1;
@@ -32,7 +32,6 @@ searchFormEl.addEventListener('submit', async (event) => {
 
   if (title !== "" && title.length > 2) {
     const { movies, totalResults } = await getMovies(title, year, page);
-
     renderMovies(movies, totalResults);
     pieces();
   } else {
@@ -49,12 +48,18 @@ function errorMessage() {
   //한글 입력 검사
   let koCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 
-  if (title === "" || title.length < 3) {
-    message.textContent = `Please enter at least 3 characters.`;
-  } else if (koCheck.test(title) == true) {
-    message.textContent = `Please enter the search word in English.`;
+  if (moviesEl.textContent !== '') {
+    message.textContent='';
   } else {
-    message.textContent = `Movie not found!`;
+    // message.classList.add('error');
+    // loaded()
+    if (title === "" || title.length < 3) {
+      message.textContent = `Please enter at least 3 characters.`;
+    } else if (koCheck.test(title) == true) {
+      message.textContent = `Please enter the search word in English.`;
+    } else {
+      message.textContent = `Movie not found!`;
+    }
   }
   moviesEl.append(message);
   setMoreBtnVisibility();
@@ -164,7 +169,6 @@ function renderMovies(movies, totalResults) {
   }
   setMoreBtnVisibility(totalResults, page);
   loaded();
-  message='';
 }
 
 
