@@ -49,7 +49,7 @@ function errorMessage() {
   let koCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 
   if (moviesEl.textContent !== '') {
-    message.textContent='';
+    moviesEl.removeChild(span);
   } else {
     if (title === "" || title.length < 3) {
       message.textContent = `Please enter at least 3 characters.`;
