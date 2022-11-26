@@ -1,6 +1,6 @@
 import { modalControl } from './modal.js'
 import { getMovieDetail, renderMovieDetail } from './detail.js';
-import API_KEY from './apikey.js';
+import API_KEY from '../apikey.js';
 
 // 초기화 코드
 const moviesEl = document.querySelector('.movies');
@@ -51,8 +51,6 @@ function errorMessage() {
   if (moviesEl.textContent !== '') {
     message.textContent='';
   } else {
-    // message.classList.add('error');
-    // loaded()
     if (title === "" || title.length < 3) {
       message.textContent = `Please enter at least 3 characters.`;
     } else if (koCheck.test(title) == true) {
@@ -170,6 +168,4 @@ function renderMovies(movies, totalResults) {
   setMoreBtnVisibility(totalResults, page);
   loaded();
 }
-
-
 

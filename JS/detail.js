@@ -1,4 +1,4 @@
-import API_KEY from './apikey.js';
+import API_KEY from '../apikey.js';
 
 export async function getMovieDetail(id) {
   const res = await fetch(`https://omdbapi.com/?apikey=${API_KEY}&i=${id}&plot=full`)
