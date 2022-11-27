@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
-  <!-- <link rel="stylesheet" href="./main.scss" /> -->
   <link rel="stylesheet" href="./main.css" />
   <script defer type="module" src="./JS/main.js"></script>
 </head>
@@ -33,20 +33,25 @@
           <div class="input-text">
             <input class="search-input" type="text" placeholder="What are you looking for?" />
           </div>
-          <!-- 년도검색은 다음 기회에...! -->
-          <!-- <div class="input-year">
+          <!-- 시대별 검색옵션! -->
+          <div class="input-year">
             <span>Released</span>
             <input type="radio" id="allyears" class="years" name="years" value="All" checked />
             <label for="allyears" class="year-label">All</label>
-            <input type="radio" id="years1" class="years" name="years" value="1900s" />
-            <label for="years1" class="year-label">1900s</label>
-            <input type="radio" id="years2" class="years" name="years" value="2000s" />
-            <label for="years2" class="year-label">2000s</label>
-            <input type="radio" id="years3" class="years" name="years" value="2010s" />
-            <label for="years3" class="year-label">2010s</label>
-            <input type="radio" id="years4" class="years" name="years" value="2020s" />
-            <label for="years4" class="year-label">2020s</label>
-          </div> -->
+
+            <input type="radio" id="1990s" class="years" name="years" value="1990" />
+            <label for="1990s" class="year-label">1990s</label>
+
+            <input type="radio" id="2000s" class="years" name="years" value="2000" />
+            <label for="2000s" class="year-label">2000s</label>
+
+            <input type="radio" id="2010s" class="years" name="years" value="2010" />
+            <label for="2010s" class="year-label">2010s</label>
+
+            <input type="radio" id="2020s" class="years" name="years" value="2020" />
+            <label for="2020s" class="year-label">2020s</label>
+          </div>
+          <!-- 출력갯수 검색옵션! -->
           <div class="input-pieces">
             <span>Pieces</span>
             <input type="radio" id="ten" class="pieces" name="pieces" value="1" checked />
@@ -94,7 +99,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <a href="https://github.com/iziz9/" class="github">
+    <a href="https://github.com/iziz9/" title="GitHub" target="_blank" class="github">
       <img src="./images/git.png" alt="github">
     </a>
   </footer>

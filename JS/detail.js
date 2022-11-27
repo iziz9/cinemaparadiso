@@ -48,7 +48,7 @@ export function renderMovieDetail(movieDetail) {
     const plotEl = document.createElement('div');
     plotEl.classList.add('plot');
     plotEl.textContent = `${movieDetail.Plot}`;
-    // 컨텐트 - 평점
+    // 컨텐트 - 평점 (삭제)
     // const ratingsEl = document.createElement('div');
     // const imdbEl = document.createElement('div');
     // const imdbImgEl = document.createElement('div');

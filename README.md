@@ -1,7 +1,9 @@
 # API 활용 영화 검색 사이트 만들기
 
 🍫 [1차 제출본](https://stupendous-hotteok-8280cc.netlify.app/)
-🍫 [수정본!](https://relaxed-brigadeiros-9ddb03.netlify.app/)
+
+🍫 [수정본](https://relaxed-brigadeiros-9ddb03.netlify.app/)
+
 🍫 [개인 레포/커밋기록](https://github.com/iziz9/cinemaparadiso)
 
 
@@ -17,9 +19,9 @@
 - 모듈화
 
 ---
-## 🍫 리뷰요청
+## 🍫 아쉬운점 & 리뷰요청
 
--
+- 
 -
 -
 
