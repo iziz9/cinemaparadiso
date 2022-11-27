@@ -2,7 +2,7 @@ import { modalControl } from './modal.js'
 import { getMovieDetail, renderMovieDetail } from './detail.js';
 import API_KEY from '../apikey.js';
 import { setMoreBtnVisibility, moreBtnEl } from './morebtn.js';
-import { loadEl, loading, loaded } from './loading.js';
+import { loading, loaded } from './loading.js';
 
 // 초기화 코드
 const moviesEl = document.querySelector('.movies');
@@ -48,14 +48,7 @@ searchFormEl.addEventListener('submit', async (event) => {
 // 시대별 검색옵션
 async function decade(selectDecade) {
   let decadeStrg = [];
-  let totalResultStrg = 0;
-
-  // fetch로 api 데이터 가져오기, await을 안붙이면 promise는 pending상태?
-  // 가져온 데이터를 배열에 담기
-  // response가 true일 때만 배열에 담아주기
-  // 담아둔 친구들을 합치고 한번에 출력... 이 때 concat을 쓰는건가?
-  // total result 합쳐주기
-  // year가 ""가 아닐 때... 더보기버튼 동작 확인하기
+  let totalStrg = 0;
 
   for (let i = +(selectDecade); i < +(selectDecade)+10; i += 1) {
     const response = await fetch(`https://omdbapi.com/?apikey=${API_KEY}&s=${title}&y=${i}&page=${page}`);
@@ -64,23 +57,10 @@ async function decade(selectDecade) {
 
     if (getData !== 'False') {
       decadeStrg.push(...movies);
-      totalResultStrg += Number(totalResults);
-    }
-    // if (movieData.Response === 'True') {
-    //   const { Search: movies, totalResults } = movieData
-    //   decadeStrg.push(movies);
-
-    //   return {
-    //     movies,
-    //     totalResults
-    //   }
-    // }
-    // else { 
-    //   // 배열에 push하지 않음. 
-    //   console.log("no result")
-    //   return;
-    //   // errorMessage();
-    // }
+      totalStrg += Number(totalResults);
+      renderMovies(movies, totalStrg);
+      setMoreBtnVisibility();
+    } 
   }
   console.log(decadeStrg);
 }

@@ -1,29 +1,34 @@
 # API 활용 영화 검색 사이트 만들기
 
-🍫 [1차 제출본](https://stupendous-hotteok-8280cc.netlify.app/)
+⚡ [1차 제출본](https://stupendous-hotteok-8280cc.netlify.app/)
 
-🍫 [수정본](https://relaxed-brigadeiros-9ddb03.netlify.app/)
+⚡ [1차 PR 페이지](https://github.com/KDT1-FE/KDT3-M2/pull/29)
 
-🍫 [개인 레포/커밋기록](https://github.com/iziz9/cinemaparadiso)
+⚡ [수정본!](https://relaxed-brigadeiros-9ddb03.netlify.app/)
+
+⚡ [개인 레포/커밋기록](https://github.com/iziz9/cinemaparadiso)
 
 
 ---
 
-## 🍫 1차리뷰 이후 크게 수정된 부분
+## 🍫 1차리뷰 이후 수정된 부분
 
+지난 번 받은 리뷰를 바탕으로 많은 부분이 바뀌었습니다! 😋
 - 검색어가 짧을 경우 api 호출 이전에 에러메시지를 출력하도록 코드 수정
 - 검색어를 한글로 입력 시 출력되는 에러메시지 추가
 - 영화 상세정보 모달 기능 추가
 - 출력갯수 옵션 선택 시 비효율적으로 api호출하던 코드 수정
 - api key 비공개처리
 - 모듈화
+- 시대별 검색 옵션 추가
+- 그 외 함수명 변경, 이미지 alt속성 추가 등...
 
 ---
 ## 🍫 아쉬운점 & 리뷰요청
 
-- 
--
--
+- 시대별 검색 기능 미완성 상태입니다. for문 안에 await을 붙이니 1년단위로 순차적 출력이 되고 있는데 출력갯수 오류 없이 밖으로 빼내는 방법을 잘 모르겠습니다...
+- 시대별 검색 함수가 실행되면 검색된 영화 전체가 한번에 출력됩니다. 함수 안에 어떤 코드를 추가해야 첫 호출 시 10개만 출력되게 할 수 있을까요? 😥
+- 최대한 모듈화 해 보고 싶어서 짧은 코드 두개를 loading.js에 넣어놨는데 이런 식의 옹졸한 모듈도 괜찮은지... 아니면 짧은 코드는 main.js에서 관리하는게 더 나은지 궁금합니다.
 
 ---
 ## 🍫 요구사항
@@ -38,7 +43,7 @@
 ### :grey_question: 선택
 
 - [x] 한 번의 검색으로 영화 목록이 20개 이상 검색되도록 만들어보세요.
-- [ ] 영화 개봉연도로 검색할 수 있도록 만들어보세요.
+- [x] 영화 개봉연도로 검색할 수 있도록 만들어보세요.
 - [x] 영화 목록을 검색하는 동안 로딩 애니메이션이 보이도록 만들어보세요.
 - [ ] 무한 스크롤 기능을 추가해서 추가 영화 목록을 볼 수 있도록 만들어보세요.
 - [x] 영화 포스터가 없을 경우 대체 이미지를 출력하도록 만들어보세요.
@@ -50,7 +55,7 @@
 
 ---
 
-## 🍫 참고자료
+## 🍫 사용한 자료
 
 - [favicon](https://www.flaticon.com/free-icons/cinema) Flaticon
 - [background image](https://www.rmg.co.uk/whats-on/astronomy-photographer-year/galleries/skyscapes-2021) Luna Dunes © Jeffrey Lovelace

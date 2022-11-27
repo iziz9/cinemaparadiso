@@ -78,7 +78,7 @@ export function renderMovieDetail(movieDetail) {
       directorEl, 
       actorsEl, 
       plotEl, 
-      // ratingsEl,
+      // ratingsEl, (삭제)
       // imdbEl,
       // imdbImgEl,
       // imdbRatingEl,
